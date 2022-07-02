@@ -19,7 +19,19 @@ const orderedDrivers = computed(() => drivers.value.sort((a, b) => a.position - 
 </script>
 
 <template>
-  <div v-for="driver in orderedDrivers" @click="() => driver.position++">
-    {{ driver }}
+  <div style="position: relative">
+    <!-- transition Not working -->
+    <div
+      v-for="(driver, i) in orderedDrivers"
+      @click="() => driver.position++"
+      :style="{
+        height: '2em',
+        position: 'absolute',
+        top: 2 * i + 'em',
+        transition: 'all 0.5s ease-in-out'
+      }"
+    >
+      {{ driver }}
+    </div>
   </div>
 </template>
