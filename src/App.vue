@@ -1,7 +1,12 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 
+import DriverCard from './components/DriverCard.vue';
 import { Driver } from './types';
+
+const randomIntFromInterval = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
 
 const drivers = ref<Driver[]>(
   Array(20)
@@ -10,28 +15,33 @@ const drivers = ref<Driver[]>(
       return {
         id: crypto.randomUUID(),
         name: 'Hey',
-        position: i
+        position: i + 1
       };
     })
 );
 
-const orderedDrivers = computed(() => drivers.value.sort((a, b) => a.position - b.position));
+const getDriverIndex = (driver: Driver) => {
+  return drivers.value.sort((a, b) => a.position - b.position).indexOf(driver);
+};
+
+const updateDriverPosition = (driver: Driver) => {
+  const newPosition = randomIntFromInterval(0, 19);
+  if (driver.position === newPosition) return;
+
+  driver.position = newPosition;
+
+  // TODO: update others drivers positions
+};
 </script>
 
 <template>
   <div style="position: relative">
-    <!-- transition Not working -->
-    <div
-      v-for="(driver, i) in orderedDrivers"
-      @click="() => driver.position++"
-      :style="{
-        height: '2em',
-        position: 'absolute',
-        top: 2 * i + 'em',
-        transition: 'all 0.5s ease-in-out'
-      }"
-    >
-      {{ driver }}
-    </div>
+    <DriverCard
+      v-for="driver in drivers"
+      :key="driver.id"
+      :driver="driver"
+      :index="getDriverIndex(driver)"
+      @update-position="() => updateDriverPosition(driver)"
+    />
   </div>
 </template>
