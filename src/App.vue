@@ -28,6 +28,26 @@ const updateDriverPosition = (driver: Driver) => {
   const newPosition = randomIntFromInterval(0, 19);
   if (driver.position === newPosition) return;
 
+  const hasGoneUp = newPosition > driver.position;
+
+  if (hasGoneUp) {
+    const toMove = drivers.value.filter(
+      d => d.id !== driver.id && d.position > driver.position && d.position <= newPosition
+    );
+
+    for (const d of toMove) {
+      d.position--;
+    }
+  } else {
+    const toMove = drivers.value.filter(
+      d => d.id !== driver.id && d.position < driver.position && d.position >= newPosition
+    );
+
+    for (const d of toMove) {
+      d.position++;
+    }
+  }
+
   driver.position = newPosition;
 
   // TODO: update others drivers positions
@@ -45,3 +65,10 @@ const updateDriverPosition = (driver: Driver) => {
     />
   </div>
 </template>
+
+<style>
+html {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+</style>
