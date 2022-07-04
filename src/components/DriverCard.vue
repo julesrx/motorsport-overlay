@@ -4,7 +4,7 @@ import { ref, watch } from 'vue';
 import { Driver } from '../types';
 
 const emit = defineEmits<{
-  (e: 'update-position'): void;
+  (e: 'update-position', positionGained: boolean): void;
 }>();
 
 const props = defineProps<{ driver: Driver; index: number }>();
@@ -29,7 +29,8 @@ const cardHeight = 2;
   <div
     :class="{ 'driver-card': true, updated: showArrow }"
     :style="{ height: cardHeight + 'em', top: index * cardHeight + 'em' }"
-    @click="() => emit('update-position')"
+    @click.prevent="() => emit('update-position', true)"
+    @click.right.prevent="() => emit('update-position', false)"
   >
     {{ driver.position }}
   </div>

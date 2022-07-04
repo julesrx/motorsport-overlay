@@ -4,12 +4,10 @@ import { ref } from 'vue';
 import DriverCard from './components/DriverCard.vue';
 import { Driver } from './types';
 
-const randomIntFromInterval = (min: number, max: number) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
+const driverCount = 20;
 
 const drivers = ref<Driver[]>(
-  Array(20)
+  Array(driverCount)
     .fill(1)
     .map((_, i) => {
       return {
@@ -24,9 +22,9 @@ const getDriverIndex = (driver: Driver) => {
   return drivers.value.sort((a, b) => a.position - b.position).indexOf(driver);
 };
 
-const updateDriverPosition = (driver: Driver) => {
-  const newPosition = randomIntFromInterval(0, 19);
-  if (driver.position === newPosition) return;
+const updateDriverPosition = (driver: Driver, positionGained: boolean) => {
+  const newPosition = positionGained ? driver.position - 1 : driver.position + 1;
+  if (newPosition < 1 || newPosition > driverCount || driver.position === newPosition) return;
 
   const hasGoneUp = newPosition > driver.position;
 
@@ -61,7 +59,7 @@ const updateDriverPosition = (driver: Driver) => {
       :key="driver.id"
       :driver="driver"
       :index="getDriverIndex(driver)"
-      @update-position="() => updateDriverPosition(driver)"
+      @update-position="e => updateDriverPosition(driver, e)"
     />
   </div>
 </template>
