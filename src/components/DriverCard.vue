@@ -21,12 +21,14 @@ watch(
     }, 1000);
   }
 );
+
+const cardHeight = 2;
 </script>
 
 <template>
   <div
     :class="{ 'driver-card': true, updated: showArrow }"
-    :style="{ top: index * 2 + 'em' }"
+    :style="{ height: cardHeight + 'em', top: index * cardHeight + 'em' }"
     @click="() => emit('update-position')"
   >
     {{ driver.position }}
@@ -35,7 +37,6 @@ watch(
 
 <style scoped>
 .driver-card {
-  height: 2em;
   width: 2em;
   position: absolute;
   transition: all 0.5s ease 0s;
