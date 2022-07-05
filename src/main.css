@@ -12,3 +12,7 @@
     url('./assets/fonts/formula1-bold-webfont.woff') format('woff');
   font-weight: 700;
 }
+
+#bg:before {
+  background-image: url('./assets/img/background.jpg');
+}
