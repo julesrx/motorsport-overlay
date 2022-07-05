@@ -1,15 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import DriverCard from './components/DriverCard.vue';
 import { Driver } from './types';
+import DriverCard from './components/DriverCard.vue';
 import { f1 } from './drivers';
 
 const drivers = ref<Driver[]>([...f1]);
-
-const getDriverIndex = (driver: Driver) => {
-  return drivers.value.sort((a, b) => a.position - b.position).indexOf(driver);
-};
 
 const updateDriverPosition = (driver: Driver, positionGained: boolean) => {
   const newPosition = positionGained ? driver.position - 1 : driver.position + 1;
@@ -43,11 +39,11 @@ const updateDriverPosition = (driver: Driver, positionGained: boolean) => {
 <template>
   <div class="py-10 px-20 h-screen w-screen">
     <div class="bg-transparent bg-dark-500 text-light-50 bg-opacity-90 rounded-l-3xl w-52 pb-2">
-      <div class="flex justify-center py-1">
-        <h1 class="font-bold text-4xl">F1</h1>
+      <div class="flex justify-center py-4">
+        <img src="./assets/img/f1-logo.png" class="h-8" />
       </div>
 
-      <div class="bg-black flex justify-center text-xl">
+      <div class="bg-black flex justify-center text-xl italic font-bold">
         <span>5:51</span>
       </div>
 
