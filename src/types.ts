@@ -1,6 +1,7 @@
 type Driver = {
-  id: string;
+  number: string;
   name: string;
+  designation: string;
   position: number;
 };
 

@@ -3,20 +3,9 @@ import { ref } from 'vue';
 
 import DriverCard from './components/DriverCard.vue';
 import { Driver } from './types';
+import { f1 } from './drivers';
 
-const driverCount = 20;
-
-const drivers = ref<Driver[]>(
-  Array(driverCount)
-    .fill(1)
-    .map((_, i) => {
-      return {
-        id: crypto.randomUUID(),
-        name: 'Hey',
-        position: i + 1
-      };
-    })
-);
+const drivers = ref<Driver[]>(f1);
 
 const getDriverIndex = (driver: Driver) => {
   return drivers.value.sort((a, b) => a.position - b.position).indexOf(driver);
@@ -24,13 +13,14 @@ const getDriverIndex = (driver: Driver) => {
 
 const updateDriverPosition = (driver: Driver, positionGained: boolean) => {
   const newPosition = positionGained ? driver.position - 1 : driver.position + 1;
-  if (newPosition < 1 || newPosition > driverCount || driver.position === newPosition) return;
+  if (newPosition < 1 || newPosition > drivers.value.length || driver.position === newPosition)
+    return;
 
   const hasGoneUp = newPosition > driver.position;
 
   if (hasGoneUp) {
     const toMove = drivers.value.filter(
-      d => d.id !== driver.id && d.position > driver.position && d.position <= newPosition
+      d => d.number !== driver.number && d.position > driver.position && d.position <= newPosition
     );
 
     for (const d of toMove) {
@@ -38,7 +28,7 @@ const updateDriverPosition = (driver: Driver, positionGained: boolean) => {
     }
   } else {
     const toMove = drivers.value.filter(
-      d => d.id !== driver.id && d.position < driver.position && d.position >= newPosition
+      d => d.number !== driver.number && d.position < driver.position && d.position >= newPosition
     );
 
     for (const d of toMove) {
@@ -51,13 +41,18 @@ const updateDriverPosition = (driver: Driver, positionGained: boolean) => {
 </script>
 
 <template>
-  <div class="relative">
-    <DriverCard
-      v-for="driver in drivers"
-      :key="driver.id"
-      :driver="driver"
-      :index="getDriverIndex(driver)"
-      @update-position="e => updateDriverPosition(driver, e)"
-    />
+  <div class="py-10 px-20 h-screen w-screen">
+    <h1>F1</h1>
+    <p>5:51</p>
+
+    <div class="relative">
+      <DriverCard
+        v-for="driver in drivers"
+        :key="driver.number"
+        :driver="driver"
+        :index="getDriverIndex(driver)"
+        @update-position="e => updateDriverPosition(driver, e)"
+      />
+    </div>
   </div>
 </template>

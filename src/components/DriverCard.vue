@@ -37,6 +37,7 @@ const cardHeight = 2;
     @click.right.prevent="() => emit('update-position', false)"
   >
     {{ driver.position }}
+    {{ driver.designation }}
 
     <div class="absolute right-2" v-if="positionUpdated">
       {{ positionGained ? '-' : '+' }}
