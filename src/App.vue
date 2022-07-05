@@ -41,7 +41,7 @@ const updateDriverPosition = (driver: Driver, positionGained: boolean) => {
   <div class="py-10 px-20 h-screen w-screen">
     <div class="bg-transparent bg-dark-500 text-light-50 bg-opacity-90 rounded-l-3xl w-52 pb-2">
       <div class="flex justify-center py-4">
-        <img src="./assets/img/f1-logo.png" class="h-8" />
+        <img src="./assets/img/f1-logo.svg" class="h-8" />
       </div>
 
       <div class="bg-black flex justify-center text-xl italic font-bold">
