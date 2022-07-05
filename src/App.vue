@@ -5,7 +5,7 @@ import DriverCard from './components/DriverCard.vue';
 import { Driver } from './types';
 import { f1 } from './drivers';
 
-const drivers = ref<Driver[]>(f1);
+const drivers = ref<Driver[]>([...f1]);
 
 const getDriverIndex = (driver: Driver) => {
   return drivers.value.sort((a, b) => a.position - b.position).indexOf(driver);
@@ -46,7 +46,7 @@ const updateDriverPosition = (driver: Driver, positionGained: boolean) => {
       <h1>F1</h1>
       <p>5:51</p>
 
-      <div class="relative" :style="{ height: 2 * drivers.length + 'em' }">
+      <div class="relative">
         <DriverCard
           v-for="driver in drivers"
           :key="driver.number"
