@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'Formula';
+  font-family: 'Formula 1';
   src: url('./assets/fonts/formula1-regular-webfont.woff2') format('woff2'),
     url('./assets/fonts/formula1-regular-webfont.woff') format('woff');
   font-weight: 400;
@@ -7,7 +7,7 @@
 }
 
 @font-face {
-  font-family: 'Formula';
+  font-family: 'Formula 1';
   src: url('./assets/fonts/formula1-bold-webfont.woff2') format('woff2'),
     url('./assets/fonts/formula1-bold-webfont.woff') format('woff');
   font-weight: 700;

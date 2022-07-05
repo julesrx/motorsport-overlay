@@ -41,7 +41,7 @@ const updateDriverPosition = (driver: Driver, positionGained: boolean) => {
 </script>
 
 <template>
-  <div class="py-10 px-20 h-screen w-screen" style="font-family: 'Formula'">
+  <div class="py-10 px-20 h-screen w-screen">
     <div class="bg-transparent bg-dark-500 text-light-50">
       <h1>F1</h1>
       <p>5:51</p>
