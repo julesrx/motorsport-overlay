@@ -41,18 +41,20 @@ const updateDriverPosition = (driver: Driver, positionGained: boolean) => {
 </script>
 
 <template>
-  <div class="py-10 px-20 h-screen w-screen">
-    <h1>F1</h1>
-    <p>5:51</p>
+  <div class="py-10 px-20 h-screen w-screen" style="font-family: 'Formula'">
+    <div class="bg-transparent bg-dark-500 text-light-50">
+      <h1>F1</h1>
+      <p>5:51</p>
 
-    <div class="relative">
-      <DriverCard
-        v-for="driver in drivers"
-        :key="driver.number"
-        :driver="driver"
-        :index="getDriverIndex(driver)"
-        @update-position="e => updateDriverPosition(driver, e)"
-      />
+      <div class="relative" :style="{ height: 2 * drivers.length + 'em' }">
+        <DriverCard
+          v-for="driver in drivers"
+          :key="driver.number"
+          :driver="driver"
+          :index="getDriverIndex(driver)"
+          @update-position="e => updateDriverPosition(driver, e)"
+        />
+      </div>
     </div>
   </div>
 </template>

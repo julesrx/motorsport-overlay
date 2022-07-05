@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 import { Driver } from '../types';
 
@@ -26,12 +26,25 @@ watch(
 );
 
 const cardHeight = 2;
+
+const style = computed(() => {
+  return { height: cardHeight + 'em', top: props.index * cardHeight + 'em' };
+});
 </script>
 
 <template>
   <div
-    class="w-[4em] absolute transition transition-all duration-500 select-none flex pl-2 items-center bg-[#d4ff00] border border-black cursor-pointer"
-    :class="{ 'bg-red-500': positionUpdated }"
+    class="flex items-center"
+    :style="style"
+    @click.prevent="() => emit('update-position', true)"
+    @click.right.prevent="() => emit('update-position', false)"
+  >
+    <div class="w-8 text-center">{{ driver.position }}</div>
+    <div>{{ driver.designation }}</div>
+  </div>
+
+  <!-- <div
+    class="w-[4em] absolute transition transition-all duration-500 select-none flex pl-2 items-center cursor-pointer"
     :style="{ height: cardHeight + 'em', top: index * cardHeight + 'em' }"
     @click.prevent="() => emit('update-position', true)"
     @click.right.prevent="() => emit('update-position', false)"
@@ -42,5 +55,5 @@ const cardHeight = 2;
     <div class="absolute right-2" v-if="positionUpdated">
       {{ positionGained ? '-' : '+' }}
     </div>
-  </div>
+  </div> -->
 </template>
