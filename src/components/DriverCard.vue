@@ -9,16 +9,16 @@ const emit = defineEmits<{
   (e: 'update-position', positionGained: boolean): void;
 }>();
 
-const props = defineProps<{ driver: Driver; index: number }>();
+const props = defineProps<{ driver: Driver }>();
 
 const positionUpdated = ref(false);
 const positionGained = ref(false);
 watch(
-  () => props.index,
-  (newIndex, oldIndex) => {
-    if (newIndex === oldIndex) return;
+  () => props.driver.position,
+  (newPosition, oldPosition) => {
+    if (newPosition === oldPosition) return;
 
-    positionGained.value = newIndex < oldIndex;
+    positionGained.value = newPosition < oldPosition;
 
     positionUpdated.value = true;
     setTimeout(() => {

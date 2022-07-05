@@ -51,7 +51,6 @@ const updateDriverPosition = (driver: Driver, positionGained: boolean) => {
           v-for="driver in drivers"
           :key="driver.number"
           :driver="driver"
-          :index="getDriverIndex(driver)"
           @update-position="e => updateDriverPosition(driver, e)"
         />
       </div>
