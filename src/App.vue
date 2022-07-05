@@ -42,11 +42,11 @@ const updateDriverPosition = (driver: Driver, positionGained: boolean) => {
 
 <template>
   <div class="py-10 px-20 h-screen w-screen">
-    <div class="bg-transparent bg-dark-500 text-light-50">
+    <div class="bg-transparent bg-dark-500 text-light-50 bg-opacity-90 py-1">
       <h1>F1</h1>
       <p>5:51</p>
 
-      <div class="relative">
+      <div>
         <DriverCard
           v-for="driver in drivers"
           :key="driver.number"

@@ -1,5 +1,6 @@
 Other solution :
 display flex always, simulate order with position/margin before, then reorder
+juste do translate. Easy
 
 broken transitions :
 
