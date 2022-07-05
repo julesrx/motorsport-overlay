@@ -3,6 +3,7 @@ import { ref } from 'vue';
 
 import { Driver } from './types';
 import DriverCard from './components/DriverCard.vue';
+import Timer from './components/Timer.vue';
 import { f1 } from './drivers';
 
 const drivers = ref<Driver[]>([...f1]);
@@ -44,7 +45,7 @@ const updateDriverPosition = (driver: Driver, positionGained: boolean) => {
       </div>
 
       <div class="bg-black flex justify-center text-xl italic font-bold">
-        <span>5:51</span>
+        <Timer />
       </div>
 
       <div class="relative" :style="{ height: `${drivers.length * 2.5}rem` }">
