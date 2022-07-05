@@ -44,9 +44,9 @@ const chevronClassList = 'absolute w-5 w-5 left-[.7rem] transition transition-op
     </div>
 
     <img
-      src="https://www.formula1.com/content/dam/fom-website/teams/2022/ferrari-logo.png.transform/2col/image.png"
-      alt=""
-      class="w-4 h-4"
+      :src="`https://www.formula1.com/content/dam/fom-website/teams/2022/${driver.team.uid}-logo.png.transform/2col/image.png`"
+      :alt="driver.team.name"
+      class="w-6 h-6"
     />
 
     <div class="w-14 font-bold ml-2">{{ driver.designation }}</div>

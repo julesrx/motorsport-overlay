@@ -3,6 +3,12 @@ type Driver = {
   name: string;
   designation: string;
   position: number;
+  team: Team;
 };
 
-export type { Driver };
+type Team = {
+  uid: string;
+  name: string;
+};
+
+export type { Driver, Team };
