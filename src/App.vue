@@ -47,13 +47,11 @@ const updateDriverPosition = (driver: Driver, positionGained: boolean) => {
   }
 
   driver.position = newPosition;
-
-  // TODO: update others drivers positions
 };
 </script>
 
 <template>
-  <div style="position: relative">
+  <div class="relative">
     <DriverCard
       v-for="driver in drivers"
       :key="driver.id"
@@ -63,10 +61,3 @@ const updateDriverPosition = (driver: Driver, positionGained: boolean) => {
     />
   </div>
 </template>
-
-<style>
-html {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-</style>

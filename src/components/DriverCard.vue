@@ -9,7 +9,7 @@ const emit = defineEmits<{
 
 const props = defineProps<{ driver: Driver; index: number }>();
 
-const showArrow = ref(false);
+const positionUpdated = ref(false);
 const positionGained = ref(false);
 watch(
   () => props.index,
@@ -18,10 +18,10 @@ watch(
 
     positionGained.value = newIndex < oldIndex;
 
-    showArrow.value = true;
+    positionUpdated.value = true;
     setTimeout(() => {
-      showArrow.value = false;
-    }, 1000);
+      positionUpdated.value = false;
+    }, 500);
   }
 );
 
@@ -30,41 +30,16 @@ const cardHeight = 2;
 
 <template>
   <div
-    :class="{ 'driver-card': true, updated: showArrow }"
+    class="w-[4em] absolute transition transition-all duration-500 select-none flex pl-2 items-center bg-[#d4ff00] border border-black cursor-pointer"
+    :class="{ 'bg-red-500': positionUpdated }"
     :style="{ height: cardHeight + 'em', top: index * cardHeight + 'em' }"
     @click.prevent="() => emit('update-position', true)"
     @click.right.prevent="() => emit('update-position', false)"
   >
     {{ driver.position }}
 
-    <div class="arrow" :style="{ visibility: showArrow ? 'visible' : 'hidden' }">
-      {{ positionGained ? '^' : 'V' }}
+    <div class="absolute right-2" v-if="positionUpdated">
+      {{ positionGained ? '-' : '+' }}
     </div>
   </div>
 </template>
-
-<style scoped>
-.driver-card {
-  width: 4em;
-  position: absolute;
-  transition: all 0.5s;
-  user-select: none;
-  display: flex;
-  padding-left: 0.5em;
-  align-items: center;
-  background-color: #d4ff00;
-  border: 1px solid #000;
-  cursor: pointer;
-  color: #000;
-}
-
-.driver-card.updated {
-  background-color: red;
-}
-
-.driver-card .arrow {
-  position: absolute;
-  right: 0.5em;
-  transition: visibility 0s, opacity 0.5s linear;
-}
-</style>
