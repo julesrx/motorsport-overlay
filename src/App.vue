@@ -42,9 +42,14 @@ const updateDriverPosition = (driver: Driver, positionGained: boolean) => {
 
 <template>
   <div class="py-10 px-20 h-screen w-screen">
-    <div class="bg-transparent bg-dark-500 text-light-50 bg-opacity-90 py-1">
-      <h1>F1</h1>
-      <p>5:51</p>
+    <div class="bg-transparent bg-dark-500 text-light-50 bg-opacity-90 rounded-l-3xl w-52 pb-2">
+      <div class="flex justify-center py-1">
+        <h1 class="font-bold text-4xl">F1</h1>
+      </div>
+
+      <div class="bg-black flex justify-center text-xl">
+        <span>5:51</span>
+      </div>
 
       <div class="relative" :style="{ height: `${drivers.length * 2.5}rem` }">
         <DriverCard
