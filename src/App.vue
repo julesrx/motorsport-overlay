@@ -46,7 +46,7 @@ const updateDriverPosition = (driver: Driver, positionGained: boolean) => {
       <h1>F1</h1>
       <p>5:51</p>
 
-      <div>
+      <div class="relative" :style="{ height: `${drivers.length * 2.5}rem` }">
         <DriverCard
           v-for="driver in drivers"
           :key="driver.number"
